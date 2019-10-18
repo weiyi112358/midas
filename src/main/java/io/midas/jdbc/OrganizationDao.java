@@ -31,21 +31,14 @@ public class OrganizationDao {
             {
                 long id = rs.getLong("id");
                 String name = rs.getString("name");
-
-
                 Organization organization = new Organization();
-                organization.setId(id);
+                //organization.setId(id);
                 organization.setName(name);
-
-
                 organizations.add(organization);
-
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return  organizations;
     }
 
@@ -89,11 +82,9 @@ public class OrganizationDao {
                 logger.debug("Deleted a record");
                 return true;
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false;
-
     }
 }
