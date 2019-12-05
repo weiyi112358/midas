@@ -30,6 +30,8 @@ public class TutorDaoTest {
         s.setEmail("yiwei@gmail.com");
         tutorDao.save(s);
 
+
+
     }
 
     @Test
