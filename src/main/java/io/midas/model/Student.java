@@ -1,13 +1,11 @@
 package io.midas.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "student")
+@Table(name = "students")
 public class Student {
-//    private long id;
-//    private String name;
-//    private String email;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +16,23 @@ public class Student {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "secret_key")
+    private String secretKey;
+
+    @ManyToOne
+    @JoinColumn(name = "org_id")
+    private Organization organization;
+//    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles", joinColumns = { @JoinColumn(name = "user_id") },  inverseJoinColumns = { @JoinColumn(name = "role_id") })
+    private List<Role> roles;
+
+    public Student() {
+    }
 
     public long getId() {
         return id;
@@ -41,6 +56,40 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getSecretKey() {
+        return secretKey;
+    }
+
+    public void setSecretKey(String secretKey) {
+        this.secretKey = secretKey;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Organization getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
     }
 
 

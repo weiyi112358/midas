@@ -1,32 +1,32 @@
 package io.midas.service;
 
+import com.amazonaws.services.s3.AmazonS3;
 import io.midas.ApplicationBoot;
-import io.midas.model.Student;
-import org.junit.Before;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.io.File;
+
+import static org.mockito.Mockito.verify;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes= ApplicationBoot.class)
-public class StudentServiceTest {
+public class MessageServiceTest {
+
     @Autowired
-    private StudentService studentService;
-    private Student student;
-    
-    @Before
-    public void init(){
-        student = new Student();
-        student.setEmail("ywei729@gwu.edu");
-        student.setName("yi wei");
-    }
+    MessageService messageService;
 
     @Test
-    public void save(){
-        studentService.save(student);
+    public void sendEventTest(){
+
+        //mokito unittest
+        messageService.sendEvent("hello world");
+        Assert.assertTrue(false);
     }
 
-
 }
+

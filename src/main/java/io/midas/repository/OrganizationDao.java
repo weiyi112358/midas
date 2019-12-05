@@ -11,4 +11,5 @@ public interface OrganizationDao {
     boolean delete(String organizationName);
     Organization getOrganizationByName(String organizationName);
     List<Organization> getOrganizations();
+    //List<Organization> getOrganizationsWithChildren();
 }

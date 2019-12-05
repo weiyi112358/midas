@@ -3,7 +3,7 @@ package io.midas.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tutor")
+@Table(name = "tutors")
 public class Tutor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -11,5 +11,6 @@ public interface StudentDao {
     //TODO delete(Student stu)
     boolean delete(String studentName);
     Student getStudentByName(String studentName);
+    Student getStudentByCredentials(String email,String password);
     List<Student> getStudents();
 }

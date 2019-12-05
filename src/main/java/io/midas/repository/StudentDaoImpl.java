@@ -7,11 +7,14 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public class StudentDaoImpl implements StudentDao {
+
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
     //save return object
@@ -28,7 +31,6 @@ public class StudentDaoImpl implements StudentDao {
             if (transaction != null) {
                 transaction.rollback();
                 logger.error(e.getMessage());
-
             }
         }
         if (isSuccess) {
@@ -99,6 +101,8 @@ public class StudentDaoImpl implements StudentDao {
         }
     }
 
+
+
     @Override
     public Student getStudentByName(String name)
     {
@@ -110,5 +114,20 @@ public class StudentDaoImpl implements StudentDao {
             return query.uniqueResult();
 
         }
+    }
+
+    public Student getStudentByCredentials(String email,String password)
+    {
+        String hql = "FROM Student as u where lower(u.email) = :email and u.password = :password";
+        logger.debug(String.format("User email: %s, password: %s", email, password));
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Student> query = session.createQuery(hql);
+            query.setParameter("email", email.toLowerCase().trim());
+            query.setParameter("password", password);
+
+            return query.uniqueResult();
+        }
+
     }
 }

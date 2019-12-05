@@ -7,10 +7,11 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
+@Repository
 public class OrganizationDaoImpl implements OrganizationDao {
     private Logger logger = LoggerFactory.getLogger(this.getClass());
     @Override
@@ -98,6 +99,19 @@ public class OrganizationDaoImpl implements OrganizationDao {
             return query.list();
         }
     }
+
+//    @Override
+//    public List<Organization> getOrganizationsWithChildren()
+//    {
+//        String hql = "FROM Organization org left join fetch org.students";
+//        Transaction transaction = null;
+//        try(Session session = HibernateUtil.getSessionFactory().openSession())
+//        {
+//            Query<Organization> query = session.createQuery(hql);
+//            return query.list();
+//        }
+//
+//    }
 
     @Override
     public Organization getOrganizationByName(String name)

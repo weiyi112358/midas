@@ -24,7 +24,7 @@ public class StudentDao {
         try{
             Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
             stmt = conn.createStatement();
-            String sql = "SELECT * FROM student";
+            String sql = "SELECT * FROM students";
             rs = stmt.executeQuery(sql);
 
             while (rs.next())
@@ -96,5 +96,44 @@ public class StudentDao {
         return false;
 
     }
+
+    public Student getStudentById(int sid)
+    {
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        logger.debug("start: studentList");
+        Student student = new Student();
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            stmt = conn.createStatement();
+            String sql = "select * from students where id = '"+sid+"'";
+            rs = stmt.executeQuery(sql);
+
+            while (rs.next())
+            {
+                long id = rs.getLong("id");
+                String name = rs.getString("name");
+                String email = rs.getString("email");
+
+
+                student.setId(id);
+                student.setName(name);
+                student.setEmail(email);
+
+
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return  student;
+
+
+    }
+
+
 
 }

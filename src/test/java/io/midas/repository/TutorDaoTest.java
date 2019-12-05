@@ -1,20 +1,26 @@
 package io.midas.repository;
 
+import io.midas.ApplicationBoot;
 import io.midas.model.Tutor;
 import org.junit.*;
+import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
-public class TutorDaoTest {
-    private static TutorDao tutorDao;
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @BeforeClass
-    public static void init(){
-        tutorDao = new TutorDaoImpl();
-    }
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes= ApplicationBoot.class)
+public class TutorDaoTest {
+    @Autowired
+    TutorDao tutorDao;
+
+
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Before
     public void setUp()
@@ -30,7 +36,7 @@ public class TutorDaoTest {
     public void getTutors()
     {
         List<Tutor> tutors = tutorDao.getTutors();
-        int expected = 2;
+        int expected = 1;
         Assert.assertEquals(expected,tutors.size());
     }
 
