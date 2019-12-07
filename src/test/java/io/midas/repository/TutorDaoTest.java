@@ -29,9 +29,6 @@ public class TutorDaoTest {
         s.setName("test");
         s.setEmail("yiwei@gmail.com");
         tutorDao.save(s);
-
-
-
     }
 
     @Test
