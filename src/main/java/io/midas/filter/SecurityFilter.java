@@ -27,11 +27,11 @@
 //
 //    @Override
 //    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-////        int statusCode = authorization((HttpServletRequest)servletRequest,"xxxx");
-////        HttpServletResponse response = (HttpServletResponse) servletResponse;
-////
-////        if(statusCode==HttpServletResponse.SC_ACCEPTED) doFilter(servletRequest,servletResponse,filterChain);
-////        else response.sendError(statusCode);
+//        int statusCode = authorization((HttpServletRequest)servletRequest,"/auth");
+//        HttpServletResponse response = (HttpServletResponse) servletResponse;
+//
+//        if(statusCode==HttpServletResponse.SC_ACCEPTED) filterChain.doFilter(servletRequest, servletResponse);
+//        else response.sendError(statusCode);
 //    }
 //
 //

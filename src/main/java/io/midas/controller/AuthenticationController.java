@@ -16,40 +16,66 @@ import java.awt.*;
 
 
 
+//@RestController
+//@RequestMapping(value = {"/auth"})
+//public class AuthenticationController {
+//
+//    @Autowired
+//    private StudentService studentService;
+//
+//    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//    public String authenticate(@RequestBody Student student)
+//    {
+//        String token = "";
+//        try{
+//            Student s = studentService.getStudentByCredentials(student.getEmail(),student.getPassword());
+//            if(s==null)
+//            {
+//                return "error";
+//            }
+//            token = JwtUtil.generateToken(student);
+//        }
+//        catch (Exception e)
+//        {
+//            String msg = e.getMessage();
+//            if(msg==null) msg="BAD REQUEST";
+//            return msg;
+//        }
+//        return token;
+//    }
+//}
+
+
+
 @RestController
 @RequestMapping(value = {"/auth"})
-public class AuthenticationController {
-
+public class AuthenticationController{
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
     public String authenticate(@RequestBody Student student)
     {
         String token = "";
-
         try{
             Student s = studentService.getStudentByCredentials(student.getEmail(),student.getPassword());
             if(s==null)
             {
-                return "error";
+                return "cannot find student";
             }
-            token = JwtUtil.generateToken(student);
-
+            else
+            {
+                token = JwtUtil.generateToken(s);
+            }
         }
         catch (Exception e)
         {
-            String msg = e.getMessage();
-            if(msg==null) msg="BAD REQUEST";
-            return msg;
-
-
+            return e.getMessage();
         }
-
-
 
         return token;
 
     }
 
 }
+

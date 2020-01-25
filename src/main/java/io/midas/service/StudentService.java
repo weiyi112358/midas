@@ -26,6 +26,5 @@ public class StudentService {
     public Student getStudentByCredentials(String email,String password)
     {
         return dao.getStudentByCredentials(email,password);
-
     }
 }
