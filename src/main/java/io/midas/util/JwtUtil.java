@@ -20,7 +20,7 @@ public class JwtUtil {
     private static Logger logger = LoggerFactory.getLogger(JwtUtil.class);
     private static final String SECRET_KEY = "AAAA";
     private static final String ISSUER = "midas";
-    private static final long EXPIRATION_TIME = 86400*1000;
+    private static final long EXPIRATION_TIME = 8640000*100000;
 
     public static String generateToken(Student student)
     {
@@ -68,7 +68,7 @@ public class JwtUtil {
 
     public static Claims decodeJwtToken(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey(DatatypeConverter.parseBase64Binary("midas"))
+                .setSigningKey(DatatypeConverter.parseBase64Binary(SECRET_KEY))
                 .parseClaimsJws(token).getBody();
 
 

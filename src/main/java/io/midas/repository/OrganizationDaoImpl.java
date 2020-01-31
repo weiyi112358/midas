@@ -125,4 +125,10 @@ public class OrganizationDaoImpl implements OrganizationDao {
 
         }
     }
+
+    public interface BodyBuilder{
+        boolean save(int i);
+
+    }
+
 }
